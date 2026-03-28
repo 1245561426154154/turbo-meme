@@ -18,7 +18,7 @@ a.post("/api",(q,w)=>{
     if(!q.body.text)return w.status(400).send("No script")
     const i=c.randomBytes(6).toString("hex").toUpperCase()
     s[i]=q.body.text
-    w.json({url:`https://yourdomain.onrender.com/${i}`})
+    w.json({url:`https://turbo-meme-kf7p.onrender.com/${i}`})
 })
 
 a.get("/:i",(q,w)=>{
