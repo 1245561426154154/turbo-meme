@@ -12,13 +12,15 @@ const ok=q=>{
     return u.includes("Roblox")||h
 }
 
+a.get("/",(q,w)=>w.sendFile(__dirname+"/index.html"))
+
 a.use((q,w,n)=>ok(q)?n():w.status(403).send("Unauthorized"))
 
 a.post("/api",(q,w)=>{
     if(!q.body.text)return w.status(400).send("No script")
     const i=c.randomBytes(6).toString("hex").toUpperCase()
     s[i]=q.body.text
-    w.json({url:`https://turbo-meme-kf7p.onrender.com/${i}`})
+    w.json({url:`${q.protocol}://${q.get("host")}/${i}`})
 })
 
 a.get("/:i",(q,w)=>{
@@ -26,7 +28,5 @@ a.get("/:i",(q,w)=>{
     if(!d)return w.status(404).send("Not found")
     w.type("text/plain").send(d)
 })
-
-a.get("/",(q,w)=>w.sendFile(__dirname+"/index.html"))
 
 a.listen(process.env.PORT||3000)
